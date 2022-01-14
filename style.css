@@ -9,3 +9,5 @@
 .menu-item__link {
   @apply text-[#fcfbf7] text-xs hover:underline;
 }
+
+/* ============admin============== */

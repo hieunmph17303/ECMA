@@ -1,6 +1,16 @@
 const Header = {
     render() {
         return /* html */`
+            <div class="bg-gray-800">
+                <div class="flex justify-end">
+                    <div>
+                        <a href="/signin" class="text-white text-sm py-2 px-4">Đăng nhập</a>
+                    </div>
+                    <div>
+                        <a href="/signup" class="text-white text-sm py-2 px-4">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
             <div class="bg-[#272f54]">
                 <a href="/">
                     <img src="https://picsum.photos/150/50" alt="" class="m-auto py-3">
@@ -18,7 +28,7 @@ const Header = {
                         <a href="/news" class="menu-item__link">Tin tức</a>
                     </li>
                     <li class="menu-item">
-                        <a href="/contact" class="menu-item__link">Góc tuyển sinh</a>
+                        <a href="/admin/dashboard" class="menu-item__link">Admin</a>
                     </li>
                 </ul>
                 <form action="" class="ml-auto pr-2 my-auto">
