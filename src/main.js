@@ -1,44 +1,34 @@
 import Navigo from "navigo";
 
-import Header from "./components/header";
-import Footer from "./components/footer";
 import HomePage from "./pages/home";
 import AboutPage from "./pages/about";
 import NewsPage from "./pages/news";
 import DetailNewsPage from "./pages/detailNews";
 import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
-import AdminDashboardPage from "./pages/adminDashboard";
-import EditNewsPage from "./pages/editNewsPage";
+import DashboardPage from "./pages/admin/dashboard";
+import EditNewsPage from "./pages/admin/news/edit";
+import AdminNewsPage from "./pages/admin/news";
 
 const router = new Navigo("/", { linksSelector: "a" });
 
-const print = (content) => {
-    document.querySelector("#header").innerHTML = Header.render();
-    document.querySelector("#app").innerHTML = content;
-    document.querySelector("#footer").innerHTML = Footer.render();
-};
-const printAdmin = (content) => {
-    document.querySelector("#wrapper").innerHTML = content;
+const print = (content, id) => {
+    document.querySelector("#app").innerHTML = content.render(id);
+
+    if (content.afterRender) content.afterRender();
 };
 
 router.on({
-    "/": () => print(HomePage.render()),
-    "/about": () => print(AboutPage.render()),
-    "/news": () => print(NewsPage.render()),
-    "/signup": () => print(SignUp.render()),
-    "/signin": () => print(SignIn.render()),
-    "/news/:id": ({ data }) => {
-        const { id } = data;
-        print(DetailNewsPage.render(id));
-    },
-    "/admin": () => printAdmin(),
-    "/admin/dashboard": () => printAdmin(AdminDashboardPage.render()),
-    "/admin/news": () => printAdmin(AdminDashboardPage.render()),
-    "/admin/news/:id/edit": ({ data }) => {
-        const { id } = data;
-        printAdmin(EditNewsPage.render(id));
-    },
+    "/": () => print(HomePage),
+    "/about": () => print(AboutPage),
+    "/news": () => print(NewsPage),
+    "/signup": () => print(SignUp),
+    "/signin": () => print(SignIn),
+    "/news/:id": ({ data }) => print(DetailNewsPage, data.id),
+    "/admin": () => print(DashboardPage),
+    "/admin/dashboard": () => print(DashboardPage),
+    "/admin/news": () => print(AdminNewsPage),
+    "/admin/news/:id/edit": ({ data }) => print(EditNewsPage, data.id),
 });
 
 router.resolve();

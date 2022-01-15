@@ -1,5 +1,5 @@
-import AsideAdmin from "../components/admin/asideAdmin";
-import data from "../data";
+import AsideAdmin from "../../../components/admin/asideAdmin";
+import data from "../../../data";
 
 const EditNewsPage = {
     render(id) {
@@ -75,8 +75,8 @@ const EditNewsPage = {
                                             </textarea>
                                         </div>
                                         <div class="flex justify-center w-full px-3">
-                                            <button
-                                            class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
+                                            <button data-id=${result.id}
+                                            class="btn shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
                                             type="submit"
                                             >
                                             Cập nhật
@@ -92,6 +92,16 @@ const EditNewsPage = {
             </div>
         </div>
         `;
+    },
+    afterRender() {
+        const btns = document.querySelectorAll(".btn");
+        btns.forEach((btn) => {
+            const { id } = btn.dataset;
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log(id);
+            });
+        });
     },
 };
 export default EditNewsPage;

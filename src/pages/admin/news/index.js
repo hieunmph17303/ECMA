@@ -1,7 +1,7 @@
-import AsideAdmin from "../components/admin/asideAdmin";
-import TableNews from "../components/admin/tableNews";
+import AsideAdmin from "../../../components/admin/asideAdmin";
+import TableNews from "../../../components/admin/tableNews";
 
-const AdminDashboardPage = {
+const AdminNewsPage = {
     render() {
         return /* html */`
         <div class="flex h-screen bg-gray-200">
@@ -45,4 +45,4 @@ const AdminDashboardPage = {
         `;
     },
 };
-export default AdminDashboardPage;
+export default AdminNewsPage;
